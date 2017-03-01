@@ -15,7 +15,7 @@ class MazeMoveOperation: Operation {
     // MARK: Properties
     
     fileprivate let mazeController: MazeController
-    internal var isFinished: Bool
+    internal var isReallyFinished: Bool
     
     let move: MazeMove
     let object: MazeObject
@@ -26,7 +26,7 @@ class MazeMoveOperation: Operation {
         self.object = object
         self.move = move
         self.mazeController = mazeController
-        self.isFinished = false
+        self.isReallyFinished = false
         super.init()
     }
 
@@ -34,7 +34,7 @@ class MazeMoveOperation: Operation {
     
     override var isFinished: Bool {
         get {
-            return isFinished
+            return isReallyFinished
         }
     }
     
@@ -46,7 +46,7 @@ class MazeMoveOperation: Operation {
     
     func markAsFinished() {
         willChangeValue(forKey: "isFinished")
-        isFinished = true
+        isReallyFinished = true
         didChangeValue(forKey: "isFinished")
     }
 }

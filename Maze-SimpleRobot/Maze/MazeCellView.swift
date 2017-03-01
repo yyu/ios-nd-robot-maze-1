@@ -36,23 +36,31 @@ class MazeCellView : UIView {
             let hw = wallWidth / CGFloat(2)
             
             if cellModel.top {
-                CGPathMoveToPoint(path, nil, 0 - hw, 0)
-                CGPathAddLineToPoint(path, nil, width + hw, 0)
+//                CGPathMoveToPoint(path, nil, 0 - hw, 0)
+//                CGPathAddLineToPoint(path, nil, width + hw, 0)
+                path.move(to: CGPoint(x: 0 - hw, y: 0))
+                path.addLine(to: CGPoint(x: width + hw, y: 0))
             }
             
             if cellModel.right {
-                CGPathMoveToPoint(path, nil, width, 0)
-                CGPathAddLineToPoint(path, nil, width, height)
+//                CGPathMoveToPoint(path, nil, width, 0)
+//                CGPathAddLineToPoint(path, nil, width, height)
+                path.move(to: CGPoint(x: width, y: 0))
+                path.addLine(to: CGPoint(x: width, y: height))
             }
             
             if cellModel.bottom {
-                CGPathMoveToPoint(path, nil, width + hw, height)
-                CGPathAddLineToPoint(path, nil, 0 - hw, height)
+//                CGPathMoveToPoint(path, nil, width + hw, height)
+//                CGPathAddLineToPoint(path, nil, 0 - hw, height)
+                path.move(to: CGPoint(x: width + hw, y: height))
+                path.addLine(to: CGPoint(x: 0 - hw, y: height))
             }
             
             if cellModel.left {
-                CGPathMoveToPoint(path, nil, 0, height)
-                CGPathAddLineToPoint(path, nil, 0, 0)
+//                CGPathMoveToPoint(path, nil, 0, height)
+//                CGPathAddLineToPoint(path, nil, 0, 0)
+                path.move(to: CGPoint(x: 0, y: height))
+                path.addLine(to: CGPoint(x: 0, y: 0))
             }
             
             let bezierPath = UIBezierPath(cgPath: path)
