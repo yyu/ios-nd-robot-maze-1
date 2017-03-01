@@ -14,14 +14,14 @@ class MazeCellView : UIView {
     
     // MARK: Properties
     
-    var wallColor: UIColor = UIColor.orangeColor()
+    var wallColor: UIColor = UIColor.orange
     var cellModel: MazeCellModel?
     var wallWidth: CGFloat = 1
 
     // MARK: UIView
     
-    override func drawRect(rect: CGRect) {
-        super.drawRect(rect)
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
         
         if let cellModel = cellModel {
      
@@ -30,7 +30,7 @@ class MazeCellView : UIView {
             
             let width = bounds.width
             let height = bounds.height
-            let path = CGPathCreateMutable()
+            let path = CGMutablePath()
             
             // Half wallWidth
             let hw = wallWidth / CGFloat(2)
@@ -55,21 +55,21 @@ class MazeCellView : UIView {
                 CGPathAddLineToPoint(path, nil, 0, 0)
             }
             
-            let bezierPath = UIBezierPath(CGPath: path)
+            let bezierPath = UIBezierPath(cgPath: path)
             
             bezierPath.lineWidth = wallWidth;
             bezierPath.stroke()
             
             // Rounded corners
             let context = UIGraphicsGetCurrentContext()
-            CGContextSaveGState(context!)
+            context!.saveGState()
             let nearCornerValue = -0.5 * wallWidth
             let farCornerValue = width + nearCornerValue
-            CGContextFillEllipseInRect(context!, CGRect(x: nearCornerValue, y: nearCornerValue, width: wallWidth, height: wallWidth))
-            CGContextFillEllipseInRect(context!, CGRect(x: farCornerValue, y: farCornerValue, width: wallWidth, height: wallWidth))
-            CGContextFillEllipseInRect(context!, CGRect(x: farCornerValue, y: nearCornerValue, width: wallWidth, height: wallWidth))
-            CGContextFillEllipseInRect(context!, CGRect(x: nearCornerValue, y: farCornerValue, width: wallWidth, height: wallWidth))
-            CGContextRestoreGState(context!)
+            context!.fillEllipse(in: CGRect(x: nearCornerValue, y: nearCornerValue, width: wallWidth, height: wallWidth))
+            context!.fillEllipse(in: CGRect(x: farCornerValue, y: farCornerValue, width: wallWidth, height: wallWidth))
+            context!.fillEllipse(in: CGRect(x: farCornerValue, y: nearCornerValue, width: wallWidth, height: wallWidth))
+            context!.fillEllipse(in: CGRect(x: nearCornerValue, y: farCornerValue, width: wallWidth, height: wallWidth))
+            context!.restoreGState()
         }
     }
 }
